@@ -94,7 +94,13 @@
         </div>
     </div>
 
-    <script src="script.js?v=201"></script>
+    <script>
+        window.onerror = function(message, source, lineno, colno, error) {
+            alert("Error: " + message + "\nLine: " + lineno);
+            return true;
+        };
+    </script>
+    <script src="script.js?v=202"></script>
 
     <script>
         const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';

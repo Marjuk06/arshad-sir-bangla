@@ -16,20 +16,24 @@ let initialPinchZoom = 1.0;
 
 // --- INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
-    initTheme();
-    renderHomepage();
-    
-    // Web Browser Back Button Logic
-    window.onpopstate = function(event) {
-        handleBackAction(event);
-    };
-    
-    history.replaceState({page: 'home'}, '', '');
-    
-    // Capacitor Hardware Back Button
-    setupCapacitorBackButton();
-    
-    PWA_SETUP.init();
+    try {
+        initTheme();
+        renderHomepage();
+        
+        // Web Browser Back Button Logic
+        window.onpopstate = function(event) {
+            handleBackAction(event);
+        };
+        
+        history.replaceState({page: 'home'}, '', '');
+        
+        // Capacitor Hardware Back Button
+        setupCapacitorBackButton();
+        
+        PWA_SETUP.init();
+    } catch (e) {
+        alert("Startup Error: " + e.message + "\n\nPlease send a screenshot of this error.");
+    }
 });
 
 // --- CAPACITOR BACK BUTTON LOGIC ---
