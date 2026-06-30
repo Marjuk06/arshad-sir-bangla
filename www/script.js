@@ -205,7 +205,7 @@ function renderPdfList(categoryKey) {
             <div class="mt-2 mb-6 flex justify-center w-full animate-stagger-enter">
                 <a href="https://codenest.paymently.io/paymentlink/pay/yXQ1EJKpaPPeUpG8gyNqFKFhprFGmVjfydVpfiXA" target="_blank" class="flex items-center justify-center gap-2 px-6 py-3 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm font-bold hover:bg-white dark:hover:bg-gray-700 transition-all shadow-sm active:scale-95 no-underline backdrop-blur-md">
                     <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="text-red-500"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-                    Support This App
+                    Support This App (Donate Now)
                 </a>
             </div>
 
@@ -246,7 +246,7 @@ function renderSettingsPage() {
             <div class="mt-2 mb-6 flex justify-center w-full animate-stagger-enter">
                 <a href="https://codenest.paymently.io/paymentlink/pay/yXQ1EJKpaPPeUpG8gyNqFKFhprFGmVjfydVpfiXA" target="_blank" class="flex items-center justify-center gap-2 px-6 py-3 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm font-bold hover:bg-white dark:hover:bg-gray-700 transition-all shadow-sm active:scale-95 no-underline backdrop-blur-md">
                     <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="text-red-500"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-                    Support This App
+                    Support This App (Donate Now)
                 </a>
             </div>
 
