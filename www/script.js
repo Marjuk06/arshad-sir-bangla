@@ -148,12 +148,11 @@ function renderHomepage() {
 }
 
 function showDonationPopup() {
-    // Only show once per day
-    const lastShown = localStorage.getItem('donationPopupLastShown');
-    const today = new Date().toDateString();
+    // Only show ONCE EVER
+    const hasShown = localStorage.getItem('donationPopupHasBeenShownEver');
     
-    if (lastShown === today) return; 
-    localStorage.setItem('donationPopupLastShown', today);
+    if (hasShown === 'true') return; 
+    localStorage.setItem('donationPopupHasBeenShownEver', 'true');
     
     const popupHTML = `
         <div id="donation-popup" class="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-stagger-enter" style="animation-duration: 0.3s">
