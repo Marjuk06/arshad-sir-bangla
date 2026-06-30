@@ -200,16 +200,17 @@ function renderPdfList(categoryKey) {
                 </button>
                 <h2 class="text-2xl font-bold gradient-text">${category.name}</h2>
             </div>
-            <div class="grid grid-cols-1 gap-2 pb-6">
-                ${pdfs.length > 0 ? pdfs.map(pdf => createPdfItem(pdf)).join('') : `<div class="text-center py-10" style="opacity:0.6"><p>No PDFs found.</p></div>`}
-            </div>
             
-            <!-- Support Button at the bottom of the list -->
-            <div class="mt-4 mb-10 flex justify-center w-full animate-stagger-enter">
+            <!-- Support Button at the top of the list -->
+            <div class="mt-2 mb-6 flex justify-center w-full animate-stagger-enter">
                 <a href="https://codenest.paymently.io/paymentlink/pay/yXQ1EJKpaPPeUpG8gyNqFKFhprFGmVjfydVpfiXA" target="_blank" class="flex items-center justify-center gap-2 px-6 py-3 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm font-bold hover:bg-white dark:hover:bg-gray-700 transition-all shadow-sm active:scale-95 no-underline backdrop-blur-md">
                     <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="text-red-500"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
                     Support This App
                 </a>
+            </div>
+
+            <div class="grid grid-cols-1 gap-2 pb-6">
+                ${pdfs.length > 0 ? pdfs.map(pdf => createPdfItem(pdf)).join('') : `<div class="text-center py-10" style="opacity:0.6"><p>No PDFs found.</p></div>`}
             </div>
         </div>`;
 }
@@ -240,20 +241,21 @@ function renderSettingsPage() {
                 </button>
                 <h2 class="text-2xl font-bold">Settings</h2>
             </div>
-            <h3 class="text-xs font-bold uppercase tracking-wider mb-3 ml-1" style="opacity:0.6">Appearance</h3>
-            <div class="glass-card justify-between cursor-default"><div class="flex items-center gap-3"><div class="icon-box bg-purple"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></div><h3 class="font-bold">Dark Mode</h3></div><input type="checkbox" class="toggle-switch" ${AppState.theme === 'dark' ? 'checked' : ''} onchange="toggleTheme(this)"></div>
-            <div class="glass-card justify-between cursor-default mb-6"><div class="flex items-center gap-3"><div class="icon-box bg-blue"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg></div><h3 class="font-bold">Haptic Feedback</h3></div><input type="checkbox" class="toggle-switch" ${AppState.haptics ? 'checked' : ''} onchange="toggleHaptics(this)"></div>
-            <h3 class="text-xs font-bold uppercase tracking-wider mb-3 ml-1" style="opacity:0.6">Data</h3>
-            <div onclick="clearAppCache()" class="glass-card justify-between active:scale-95 mb-6"><div class="flex items-center gap-3"><div class="icon-box bg-orange"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></div><h3 class="font-bold">Clear Cache</h3></div><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" style="opacity:0.5"><path d="M9 18l6-6-6-6"/></svg></div>
-            <a href="https://github.com/Marjuk06/marjuk06" target="_blank" class="glass-card flex-col items-center text-center !p-6 cursor-pointer active:scale-95 no-underline"><div class="w-20 h-20 rounded-full mb-3 shadow-md overflow-hidden border-2 border-white/50"><img src="https://thumbs2.imgbox.com/ff/ed/R7clPUbF_t.jpg" alt="Marjuk" class="w-full h-full object-cover"></div><h3 class="text-xl font-extrabold gradient-text">Marjuk Amin</h3><p class="text-xs font-bold mb-3" style="opacity:0.8">App Developer</p><div class="flex gap-2"><span class="text-[10px] bg-blue-100 text-blue-600 px-2 py-1 rounded-md font-bold">React</span><span class="text-[10px] bg-green-100 text-green-600 px-2 py-1 rounded-md font-bold">Node</span></div><p class="text-[10px] mt-4" style="opacity:0.5">Version 3.5 (Premium)</p></a>
             
-            <!-- Support Button at the bottom of the list -->
-            <div class="mt-8 mb-10 flex justify-center w-full animate-stagger-enter">
+            <!-- Support Button at the top of the list -->
+            <div class="mt-2 mb-6 flex justify-center w-full animate-stagger-enter">
                 <a href="https://codenest.paymently.io/paymentlink/pay/yXQ1EJKpaPPeUpG8gyNqFKFhprFGmVjfydVpfiXA" target="_blank" class="flex items-center justify-center gap-2 px-6 py-3 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm font-bold hover:bg-white dark:hover:bg-gray-700 transition-all shadow-sm active:scale-95 no-underline backdrop-blur-md">
                     <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="text-red-500"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
                     Support This App
                 </a>
             </div>
+
+            <h3 class="text-xs font-bold uppercase tracking-wider mb-3 ml-1" style="opacity:0.6">Appearance</h3>
+            <div class="glass-card justify-between cursor-default"><div class="flex items-center gap-3"><div class="icon-box bg-purple"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></div><h3 class="font-bold">Dark Mode</h3></div><input type="checkbox" class="toggle-switch" ${AppState.theme === 'dark' ? 'checked' : ''} onchange="toggleTheme(this)"></div>
+            <div class="glass-card justify-between cursor-default mb-6"><div class="flex items-center gap-3"><div class="icon-box bg-blue"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg></div><h3 class="font-bold">Haptic Feedback</h3></div><input type="checkbox" class="toggle-switch" ${AppState.haptics ? 'checked' : ''} onchange="toggleHaptics(this)"></div>
+            <h3 class="text-xs font-bold uppercase tracking-wider mb-3 ml-1" style="opacity:0.6">Data</h3>
+            <div onclick="clearAppCache()" class="glass-card justify-between active:scale-95 mb-6"><div class="flex items-center gap-3"><div class="icon-box bg-orange"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></div><h3 class="font-bold">Clear Cache</h3></div><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" style="opacity:0.5"><path d="M9 18l6-6-6-6"/></svg></div>
+            <a href="https://github.com/Marjuk06/marjuk06" target="_blank" class="glass-card flex-col items-center text-center !p-6 cursor-pointer active:scale-95 no-underline pb-6 mb-10"><div class="w-20 h-20 rounded-full mb-3 shadow-md overflow-hidden border-2 border-white/50"><img src="https://thumbs2.imgbox.com/ff/ed/R7clPUbF_t.jpg" alt="Marjuk" class="w-full h-full object-cover"></div><h3 class="text-xl font-extrabold gradient-text">Marjuk Amin</h3><p class="text-xs font-bold mb-3" style="opacity:0.8">App Developer</p><div class="flex gap-2"><span class="text-[10px] bg-blue-100 text-blue-600 px-2 py-1 rounded-md font-bold">React</span><span class="text-[10px] bg-green-100 text-green-600 px-2 py-1 rounded-md font-bold">Node</span></div><p class="text-[10px] mt-4" style="opacity:0.5">Version 3.5 (Premium)</p></a>
         </div>`;
 }
 

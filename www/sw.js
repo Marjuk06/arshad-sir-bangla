@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bangla-batch-v205'; // Critical update - fix update loop and caching
+const CACHE_NAME = 'bangla-batch-v206'; // Critical update - fix update loop and caching
 const urlsToCache = [
     '/',
     '/index.html',
