@@ -397,15 +397,20 @@ async function initScrollableReader(url, title) {
                     viewport: pageViewport
                 }).promise;
                 
-                // Clear placeholder and adapt to canvas size
+                // Convert to JPEG image to save GPU canvas memory (CRITICAL for iOS/Tablets)
+                const img = document.createElement('img');
+                img.src = canvas.toDataURL('image/jpeg', 0.85);
+                img.style.width = '100%';
+                img.style.height = 'auto';
+                img.className = 'pdf-page-canvas shadow-md';
+                img.loading = "lazy";
+                
+                // Clear placeholder and adapt to image size
                 placeholder.innerHTML = '';
                 placeholder.style.aspectRatio = 'auto';
                 placeholder.classList.remove('bg-gray-200', 'dark:bg-gray-800', 'flex', 'items-center', 'justify-center');
                 
-                canvas.style.width = '100%';
-                canvas.style.height = 'auto';
-                canvas.className = 'pdf-page-canvas shadow-md';
-                placeholder.appendChild(canvas);
+                placeholder.appendChild(img);
                 
                 placeholder.dataset.rendered = "true";
             } catch (err) {
