@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bangla-batch-v204'; // Critical update - force complete cache refresh for PDF fix
+const CACHE_NAME = 'bangla-batch-v205'; // Critical update - fix update loop and caching
 const urlsToCache = [
     '/',
     '/index.html',
@@ -7,10 +7,8 @@ const urlsToCache = [
     '/shared-database.js',
     '/manifest.json',
     '/Assets/logo.png',
-    '/Assets/splashscreen.png',
-    'https://cdn.tailwindcss.com',
-    'https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap'
-    // Note: PDFs are cached dynamically when accessed
+    '/Assets/splashscreen.png'
+    // Note: Remote files (Tailwind, Fonts) and PDFs are cached dynamically on first load
 ];
 
 // Install event - cache resources

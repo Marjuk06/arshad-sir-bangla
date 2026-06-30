@@ -131,31 +131,22 @@
 
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js?v=204').then(reg => {
+                // Clean up old versioned registrations
+                navigator.serviceWorker.getRegistrations().then(registrations => {
+                    for (let reg of registrations) {
+                        if (reg.active && reg.active.scriptURL.includes('?v=')) {
+                            reg.unregister();
+                        }
+                    }
+                });
+                
+                // Register standard unversioned SW
+                navigator.serviceWorker.register('sw.js').then(reg => {
                     console.log('SW Registered:', reg);
-                    
-                    reg.addEventListener('updatefound', () => {
-                        const newWorker = reg.installing;
-                        newWorker.addEventListener('statechange', () => {
-                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                showUpdateNotification();
-                            }
-                        });
-                    });
                 });
             });
         }
-
-        function showUpdateNotification() {
-            const div = document.createElement('div');
-            div.style.cssText = 'position:fixed;top:20px;right:20px;background:#166534;color:white;padding:15px;border-radius:8px;z-index:10000;box-shadow:0 4px 12px rgba(0,0,0,0.3);font-family:sans-serif;';
-            div.innerHTML = `
-                <div style="font-weight:bold;margin-bottom:5px;">নতুন আপডেট পাওয়া গেছে!</div>
-                <div style="font-size:13px;margin-bottom:10px;">নতুন কন্টেন্ট এসেছে। রিফ্রেশ করুন।</div>
-                <button onclick="window.location.reload()" style="background:white;color:#166534;border:none;padding:5px 10px;border-radius:4px;font-weight:bold;cursor:pointer;">রিফ্রেশ</button>
-            `;
-            document.body.appendChild(div);
-        }
+        // Update notification removed as SW handles it automatically with skipWaiting
     </script>
 
     <!-- Vercel Speed Insights -->
