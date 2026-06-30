@@ -61,6 +61,7 @@
         "@capacitor/app": "^8.0.0",
         "@capacitor/cli": "^8.0.0",
         "@capacitor/core": "^8.0.0",
-        "@capacitor/haptics": "^8.0.0"
+        "@capacitor/haptics": "^8.0.0",
+        "@vercel/speed-insights": "^2.0.0"
     }
 }
