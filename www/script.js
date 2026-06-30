@@ -114,8 +114,20 @@ function renderHomepage() {
         </div>`;
     }).join('');
 
+    const donationHTML = `
+        <div class="mt-8 mb-4 glass-card flex flex-col items-center justify-center text-center !p-5 shadow-sm animate-stagger-enter" style="animation-delay: 0.1s">
+            <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200 mb-2">Support This App ❤️</h3>
+            <p class="text-xs text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">আপনি যদি মনে করেন এই অ্যাপটি আপনার জন্য সহায়ক হয়েছে, তবে আপনার স্বতঃস্ফূর্ত ডোনেশন দিয়ে আমাকে সাপোর্ট করতে পারেন। আপনার এই অবদান অ্যাপটির রক্ষণাবেক্ষণ ও মান উন্নয়নে বিশেষ ভূমিকা রাখবে।</p>
+            <p class="text-xs font-bold text-gray-700 dark:text-gray-400 mb-3">bkash | nagod | rocket | upay</p>
+            <a href="https://codenest.paymently.io/paymentlink/pay/yXQ1EJKpaPPeUpG8gyNqFKFhprFGmVjfydVpfiXA" target="_blank" class="flex items-center gap-2 px-6 py-2.5 bg-blue-600 text-white rounded-full text-xs font-bold hover:bg-blue-700 transition-all transform hover:scale-105 shadow-md active:scale-95 no-underline">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                Donate Now
+            </a>
+        </div>
+    `;
+
     const developerInfoHTML = `
-        <div class="mt-8 mb-20 glass-card flex flex-col items-center justify-center text-center !p-5 shadow-sm animate-stagger-enter" style="animation-delay: 0.1s">
+        <div class="mb-20 glass-card flex flex-col items-center justify-center text-center !p-5 shadow-sm animate-stagger-enter" style="animation-delay: 0.2s">
             <img src="https://github.com/marjuk06.png" alt="Marjuk Amin" class="w-16 h-16 rounded-full shadow-md mb-3 border-2 border-green-500 object-cover">
             <p class="text-sm font-extrabold text-gray-700 dark:text-gray-300 mb-2">Developed by <span class="gradient-text text-base">Marjuk Amin</span></p>
             <a href="https://wa.me/8801943549559" target="_blank" class="flex items-center gap-2 px-5 py-2.5 bg-[#25D366] text-white rounded-full text-xs font-bold hover:bg-[#128C7E] transition-all transform hover:scale-105 shadow-md active:scale-95 no-underline">
@@ -125,7 +137,50 @@ function renderHomepage() {
         </div>
     `;
 
-    mainContent.innerHTML = `<div class="px-4 pt-2">${headerHTML}<div class="grid grid-cols-1 gap-2">${categoriesHTML}</div>${developerInfoHTML}</div>`;
+    mainContent.innerHTML = `<div class="px-4 pt-2">${headerHTML}<div class="grid grid-cols-1 gap-2">${categoriesHTML}</div>${donationHTML}${developerInfoHTML}</div>`;
+    
+    // Show donation popup when homepage loads
+    showDonationPopup();
+}
+
+function showDonationPopup() {
+    // Only show once per day
+    const lastShown = localStorage.getItem('donationPopupLastShown');
+    const today = new Date().toDateString();
+    
+    if (lastShown === today) return; 
+    localStorage.setItem('donationPopupLastShown', today);
+    
+    const popupHTML = `
+        <div id="donation-popup" class="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-stagger-enter" style="animation-duration: 0.3s">
+            <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 w-full max-w-sm shadow-2xl relative flex flex-col items-center text-center">
+                <button onclick="document.getElementById('donation-popup').remove()" class="absolute top-4 right-4 p-2 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 active:scale-95 transition-colors">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+                
+                <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center mb-4">
+                    <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </div>
+                
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Support This App ❤️</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">আপনি যদি মনে করেন এই অ্যাপটি আপনার জন্য সহায়ক হয়েছে, তবে আপনার স্বতঃস্ফূর্ত ডোনেশন দিয়ে আমাকে সাপোর্ট করতে পারেন। আপনার এই অবদান অ্যাপটির রক্ষণাবেক্ষণ ও মান উন্নয়নে বিশেষ ভূমিকা রাখবে।</p>
+                <p class="text-xs font-bold text-gray-500 dark:text-gray-400 mb-6">bkash | nagod | rocket | upay</p>
+                
+                <a href="https://codenest.paymently.io/paymentlink/pay/yXQ1EJKpaPPeUpG8gyNqFKFhprFGmVjfydVpfiXA" target="_blank" onclick="document.getElementById('donation-popup').remove()" class="w-full flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-colors shadow-lg active:scale-95 no-underline">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    Donate Now
+                </a>
+            </div>
+        </div>
+    `;
+    
+    // Add to body after a short delay so it feels natural
+    setTimeout(() => {
+        if(!document.getElementById('donation-popup')) {
+            document.body.insertAdjacentHTML('beforeend', popupHTML);
+        }
+    }, 1000);
+}
 }
 
 function renderPdfList(categoryKey) {
