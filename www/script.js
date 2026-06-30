@@ -181,7 +181,6 @@ function showDonationPopup() {
         }
     }, 1000);
 }
-}
 
 function renderPdfList(categoryKey) {
     const mainContent = document.getElementById('main-content');
