@@ -1,0 +1,204 @@
+{
+    "hosting": {
+        "public": ".",
+        "ignore": [
+            "firebase.json",
+            "**/.*",
+            "**/node_modules/**",
+            "deploy.js",
+            "package.json",
+            "package-lock.json",
+            "README.md",
+            "deploy-info.json"
+        ],
+        "headers": [
+            {
+                "source": "**/*.html",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "no-cache, no-store, must-revalidate"
+                    },
+                    {
+                        "key": "Pragma",
+                        "value": "no-cache"
+                    },
+                    {
+                        "key": "Expires",
+                        "value": "0"
+                    }
+                ]
+            },
+            {
+                "source": "**/*.json",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "no-cache, no-store, must-revalidate"
+                    },
+                    {
+                        "key": "Pragma",
+                        "value": "no-cache"
+                    },
+                    {
+                        "key": "Expires",
+                        "value": "0"
+                    }
+                ]
+            },
+            {
+                "source": "**/*.js",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "no-cache, no-store, must-revalidate"
+                    },
+                    {
+                        "key": "Pragma",
+                        "value": "no-cache"
+                    },
+                    {
+                        "key": "Expires",
+                        "value": "0"
+                    }
+                ]
+            },
+            {
+                "source": "**/*.css",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "no-cache, no-store, must-revalidate"
+                    },
+                    {
+                        "key": "Pragma",
+                        "value": "no-cache"
+                    },
+                    {
+                        "key": "Expires",
+                        "value": "0"
+                    }
+                ]
+            },
+            {
+                "source": "sw.js",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "no-cache, no-store, must-revalidate"
+                    },
+                    {
+                        "key": "Pragma",
+                        "value": "no-cache"
+                    },
+                    {
+                        "key": "Expires",
+                        "value": "0"
+                    },
+                    {
+                        "key": "Service-Worker-Allowed",
+                        "value": "/"
+                    }
+                ]
+            },
+            {
+                "source": "shared-database.js",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "no-cache, no-store, must-revalidate"
+                    },
+                    {
+                        "key": "Pragma",
+                        "value": "no-cache"
+                    },
+                    {
+                        "key": "Expires",
+                        "value": "0"
+                    }
+                ]
+            },
+            {
+                "source": "**/*.ico",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "public, max-age=86400"
+                    }
+                ]
+            },
+            {
+                "source": "**/*.png",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "public, max-age=86400"
+                    }
+                ]
+            },
+            {
+                "source": "**/*.jpg",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "public, max-age=86400"
+                    }
+                ]
+            },
+            {
+                "source": "**/*.jpeg",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "public, max-age=86400"
+                    }
+                ]
+            },
+            {
+                "source": "**/*.gif",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "public, max-age=86400"
+                    }
+                ]
+            },
+            {
+                "source": "**/*.svg",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "public, max-age=86400"
+                    }
+                ]
+            },
+            {
+                "source": "**/*.pdf",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "public, max-age=31536000"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/pdf"
+                    },
+                    {
+                        "key": "Content-Disposition",
+                        "value": "inline"
+                    },
+                    {
+                        "key": "Access-Control-Allow-Origin",
+                        "value": "*"
+                    }
+                ]
+            }
+        ],
+        "rewrites": [
+            {
+                "source": "**",
+                "destination": "/index.html"
+            }
+        ]
+    }
+}

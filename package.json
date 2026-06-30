@@ -1,0 +1,66 @@
+{
+    "name": "arshad-sir-bangla-batch",
+    "version": "2.0.0",
+    "description": "আরশাদ স্যারের বাংলা ব্যাচ - Auto-updating website with admin panel",
+    "main": "deploy.js",
+    "scripts": {
+        "deploy": "node deploy.js && firebase deploy",
+        "version": "node deploy.js",
+        "build": "node deploy.js",
+        "start": "echo 'Starting local server...' && npx http-server . -p 8080 -o",
+        "dev": "echo 'Starting development server...' && npx http-server . -p 3000 -o --cors",
+        "test": "echo 'Testing deployment script...' && node deploy.js",
+        "firebase:deploy": "firebase deploy",
+        "firebase:init": "firebase init hosting",
+        "firebase:login": "firebase login",
+        "clean": "rm -f deploy-info.json",
+        "status": "echo 'Checking deployment status...' && node -e \"console.log('Version:', require('./deploy-info.json').version || 'Not deployed')\"",
+        "dev:clear": "echo 'Clearing development cache...' && node -e \"console.log('Run clearCache() in browser console to clear cache')\"",
+        "dev:helper": "echo 'Development helper loaded. Use clearCache(), forceUpdate(), or checkCache() in browser console.'"
+    },
+    "keywords": [
+        "bangla",
+        "education",
+        "pdf",
+        "admin",
+        "pwa",
+        "auto-update",
+        "service-worker"
+    ],
+    "author": "Arshad Sir Bangla Batch",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/your-username/arshad-sir-bangla-batch.git"
+    },
+    "devDependencies": {
+        "http-server": "^14.1.1"
+    },
+    "engines": {
+        "node": ">=14.0.0"
+    },
+    "files": [
+        "index.html",
+        "admin.html",
+        "styles.css",
+        "admin-styles.css",
+        "script.js",
+        "admin-script.js",
+        "shared-database.js",
+        "sw.js",
+        "deploy.js",
+        "firebase.json"
+    ],
+    "type": "commonjs",
+    "bugs": {
+        "url": "https://github.com/your-username/arshad-sir-bangla-batch/issues"
+    },
+    "homepage": "https://github.com/your-username/arshad-sir-bangla-batch#readme",
+    "dependencies": {
+        "@capacitor/android": "^8.0.0",
+        "@capacitor/app": "^8.0.0",
+        "@capacitor/cli": "^8.0.0",
+        "@capacitor/core": "^8.0.0",
+        "@capacitor/haptics": "^8.0.0"
+    }
+}

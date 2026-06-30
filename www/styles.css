@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --text-light: #1f2937;
+    --text-dark: #f3f4f6;
+    
+    --glass-bg-light: rgba(255, 255, 255, 0.70); 
+    --glass-border-light: rgba(255, 255, 255, 0.6);
+    --glass-shadow-light: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    
+    --glass-bg-dark: rgba(20, 20, 20, 0.6); 
+    --glass-border-dark: rgba(255, 255, 255, 0.1);
+    --glass-shadow-dark: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+
+    /* Safe Area for Status Bar */
+    --safe-top: env(safe-area-inset-top, 20px);
+}
+
+body {
+    font-family: 'Hind Siliguri', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    color: var(--text-light);
+    background-color: #f0f2f5;
+    background-image: linear-gradient(rgba(240, 242, 245, 0.40), rgba(240, 242, 245, 0.40)), url('Assets/bg_light.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    transition: background-image 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+    /* Allow pinch-zoom on body generally, but control via JS */
+    touch-action: pan-x pan-y pinch-zoom; 
+    -webkit-tap-highlight-color: transparent;
+}
+
+body.dark-mode {
+    background-color: #0b141a;
+    background-image: linear-gradient(rgba(11, 20, 26, 0.60), rgba(11, 20, 26, 0.60)), url('Assets/bg_dark.png');
+    color: var(--text-dark);
+}
+
+/* --- Fixed Status Bar Overlap --- */
+.glass-nav {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border-light);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    transition: all 0.3s ease;
+    
+    /* PUSH CONTENT DOWN FROM STATUS BAR */
+    padding-top: var(--safe-top);
+    height: auto;
+    padding-bottom: 10px; /* Add breathing room */
+}
+
+body.dark-mode .glass-nav {
+    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid var(--glass-border-dark);
+}
+
+.glass-card {
+    background: var(--glass-bg-light);
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border-light);
+    box-shadow: var(--glass-shadow-light);
+    border-radius: 20px;
+    padding: 16px;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 12px;
+    color: inherit; 
+}
+
+.glass-card h3, .glass-card p, .glass-card span { color: inherit; }
+
+body.dark-mode .glass-card {
+    background: var(--glass-bg-dark);
+    border: 1px solid var(--glass-border-dark);
+    box-shadow: var(--glass-shadow-dark);
+}
+
+.glass-card:active { transform: scale(0.98); }
+
+.gradient-text {
+    background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+.icon-box {
+    width: 50px; height: 50px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; color: white; flex-shrink: 0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.bg-green { background: linear-gradient(135deg, #10b981, #059669); }
+.bg-blue { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+.bg-purple { background: linear-gradient(135deg, #a855f7, #7c3aed); }
+.bg-orange { background: linear-gradient(135deg, #f97316, #ea580c); }
+.bg-red { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+.bg-gray { background: linear-gradient(135deg, #6b7280, #374151); }
+
+.toggle-switch {
+    position: relative; width: 50px; height: 28px;
+    appearance: none; background: #ef4444; border-radius: 20px;
+    transition: 0.3s; cursor: pointer; outline: none;
+}
+.toggle-switch::after {
+    content: ''; position: absolute; top: 2px; left: 2px;
+    width: 24px; height: 24px; background: white;
+    border-radius: 50%; transition: 0.3s; box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.toggle-switch:checked { background: #22c55e; }
+.toggle-switch:checked::after { transform: translateX(22px); }
+
+
+
+/* --- PDF Viewer Improvements --- */
+.pdf-scroll-container {
+    height: 100%;
+    overflow: auto; /* Allows scrolling in all directions */
+    -webkit-overflow-scrolling: touch; 
+    padding: 10px;
+    padding-top: calc(var(--safe-top) + 60px); 
+    background: #525659;
+    display: flex;
+    flex-direction: column;
+    
+    /* FIX 1: Align to start so left side isn't cut off when zoomed */
+    align-items: flex-start; 
+    
+    gap: 10px;
+    touch-action: pan-x pan-y; 
+}
+
+.pdf-page-canvas {
+    max-width: none;
+    height: auto !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    border-radius: 4px;
+    background: white;
+    
+    /* FIX 2: Center the page when it fits the screen */
+    margin: 0 auto; 
+    
+    /* Smooth zoom */
+    transition: width 0.1s ease-out; 
+    transform-origin: top center;
+}
+
+/* --- Floating Zoom Buttons (Fixed Position & Glass) --- */
+.zoom-controls {
+    position: fixed;
+    /* Moved to Right side */
+    bottom: 40px; 
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 100;
+}
+
+.zoom-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    /* Frosted Glass Effect */
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white; /* White icon */
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.1s, background 0.2s;
+}
+
+.zoom-btn:active {
+    transform: scale(0.9);
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Dark mode tweaks for buttons */
+body.dark-mode .zoom-btn {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Close button positioning for status bar */
+#pdf-reader-modal .fixed-top-bar {
+    padding-top: var(--safe-top);
+}
+
+.hidden { display: none !important; }
+#main-content { padding-bottom: 100px; padding-top: 20px;}
+
+.loader {
+    border: 3px solid rgba(0,0,0,0.1);
+    border-top: 3px solid #10b981;
+    border-radius: 50%; width: 24px; height: 24px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
