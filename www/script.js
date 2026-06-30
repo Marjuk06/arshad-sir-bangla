@@ -120,7 +120,7 @@ function renderHomepage() {
             <p class="text-xs text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">আপনি যদি মনে করেন এই অ্যাপটি আপনার জন্য সহায়ক হয়েছে, তবে আপনার স্বতঃস্ফূর্ত ডোনেশন দিয়ে আমাকে সাপোর্ট করতে পারেন। আপনার এই অবদান অ্যাপটির রক্ষণাবেক্ষণ ও মান উন্নয়নে বিশেষ ভূমিকা রাখবে।</p>
             <p class="text-xs font-bold text-gray-700 dark:text-gray-400 mb-3">bkash | nagod | rocket | upay</p>
             <a href="https://codenest.paymently.io/paymentlink/pay/yXQ1EJKpaPPeUpG8gyNqFKFhprFGmVjfydVpfiXA" target="_blank" class="flex items-center gap-2 px-6 py-2.5 bg-blue-600 text-white rounded-full text-xs font-bold hover:bg-blue-700 transition-all transform hover:scale-105 shadow-md active:scale-95 no-underline">
-                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 Donate Now
             </a>
         </div>
@@ -155,11 +155,11 @@ function showDonationPopup() {
         <div id="donation-popup" class="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-stagger-enter" style="animation-duration: 0.3s">
             <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 w-full max-w-sm shadow-2xl relative flex flex-col items-center text-center">
                 <button onclick="document.getElementById('donation-popup').remove()" class="absolute top-4 right-4 p-2 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 active:scale-95 transition-colors">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
                 
                 <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center mb-4">
-                    <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                    <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
                 </div>
                 
                 <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Support This App ❤️</h3>
@@ -167,7 +167,7 @@ function showDonationPopup() {
                 <p class="text-xs font-bold text-gray-500 dark:text-gray-400 mb-6">bkash | nagod | rocket | upay</p>
                 
                 <a href="https://codenest.paymently.io/paymentlink/pay/yXQ1EJKpaPPeUpG8gyNqFKFhprFGmVjfydVpfiXA" target="_blank" onclick="document.getElementById('donation-popup').remove()" class="w-full flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-colors shadow-lg active:scale-95 no-underline">
-                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                     Donate Now
                 </a>
             </div>
