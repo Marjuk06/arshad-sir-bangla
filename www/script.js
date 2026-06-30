@@ -247,7 +247,7 @@ async function initScrollableReader(url, title) {
                 <div id="pdf-loader" class="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-900 z-10">
                     <div class="flex flex-col items-center gap-3">
                         <div class="loader w-10 h-10 border-4 border-green-600 border-t-transparent rounded-full animate-spin"></div>
-                        <p class="text-xs text-gray-500 font-bold">Opening PDF...</p>
+                        <p id="pdf-loading-text" class="text-xs text-gray-500 font-bold">Opening PDF...</p>
                     </div>
                 </div>
             </div>
@@ -270,6 +270,17 @@ async function initScrollableReader(url, title) {
 
     try {
         const loadingTask = pdfjsLib.getDocument(url);
+        
+        loadingTask.onProgress = function (progress) {
+            if (progress.total > 0) {
+                const percent = Math.round((progress.loaded / progress.total) * 100);
+                const loadingText = document.getElementById('pdf-loading-text');
+                if (loadingText) {
+                    loadingText.textContent = `Downloading... ${percent}%`;
+                }
+            }
+        };
+
         const pdf = await loadingTask.promise;
         const container = document.getElementById('pdf-scroll-container');
         const loader = document.getElementById('pdf-loader');
