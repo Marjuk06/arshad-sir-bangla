@@ -114,7 +114,17 @@ function renderHomepage() {
         </div>`;
     }).join('');
 
-    mainContent.innerHTML = `<div class="px-4 pt-2">${headerHTML}<div class="grid grid-cols-1 gap-2">${categoriesHTML}</div></div>`;
+    const developerInfoHTML = `
+        <div class="mb-6 glass-card flex flex-col items-center justify-center text-center !p-5 shadow-sm animate-stagger-enter" style="animation-delay: 0.1s">
+            <p class="text-sm font-extrabold text-gray-700 dark:text-gray-300 mb-2">Developed by <span class="gradient-text text-base">Marjuk</span></p>
+            <a href="https://wa.me/8801943549559" target="_blank" class="flex items-center gap-2 px-5 py-2.5 bg-[#25D366] text-white rounded-full text-xs font-bold hover:bg-[#128C7E] transition-all transform hover:scale-105 shadow-md active:scale-95 no-underline">
+                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 .002 5.385.002 12.033c0 2.126.554 4.195 1.606 6.012L.004 24l6.096-1.597c1.765 1.01 3.754 1.542 5.931 1.542 6.646 0 12.03-5.386 12.03-12.033C24 5.385 18.615 0 12.031 0zm.001 21.996c-1.802 0-3.567-.484-5.111-1.401l-.367-.217-3.799.996.996-3.798-.238-.378C2.545 15.544 2.016 13.823 2.016 12.033 2.016 6.51 6.508 2.017 12.031 2.017c5.525 0 10.016 4.492 10.016 10.016 0 5.524-4.491 10.016-10.016 10.016zm5.501-7.518c-.302-.151-1.787-.882-2.063-.984-.275-.101-.475-.151-.676.151-.202.302-.782.984-.959 1.185-.176.202-.353.227-.655.076-1.784-.897-3.23-2.193-4.11-4.041-.11-.23.11-.219.4-.805.097-.196.048-.368-.026-.519-.076-.151-.676-1.63-.927-2.233-.243-.585-.49-.505-.676-.514-.176-.01-.377-.01-.578-.01-.202 0-.528.075-.805.378-.276.302-1.055 1.031-1.055 2.516s1.08 2.917 1.23 3.118c.151.202 2.127 3.245 5.152 4.549.718.309 1.278.494 1.716.632.721.229 1.378.197 1.896.119.58-.088 1.787-.73 2.038-1.436.252-.705.252-1.309.176-1.436-.075-.126-.275-.202-.577-.353z"/></svg>
+                Any Problem? Message on WhatsApp
+            </a>
+        </div>
+    `;
+
+    mainContent.innerHTML = `<div class="px-4 pt-2">${headerHTML}${developerInfoHTML}<div class="grid grid-cols-1 gap-2 pb-20">${categoriesHTML}</div></div>`;
 }
 
 function renderPdfList(categoryKey) {
@@ -132,15 +142,8 @@ function renderPdfList(categoryKey) {
                 </button>
                 <h2 class="text-2xl font-bold gradient-text">${category.name}</h2>
             </div>
-            <div class="grid grid-cols-1 gap-2 pb-6">
+            <div class="grid grid-cols-1 gap-2 pb-20">
                 ${pdfs.length > 0 ? pdfs.map(pdf => createPdfItem(pdf)).join('') : `<div class="text-center py-10" style="opacity:0.6"><p>No PDFs found.</p></div>`}
-            </div>
-            <div class="mt-4 mb-20 glass-card flex-col items-center justify-center text-center !p-5 shadow-sm">
-                <p class="text-sm font-extrabold text-gray-700 dark:text-gray-300 mb-2">Developed by <span class="gradient-text text-base">Marjuk</span></p>
-                <a href="https://wa.me/8801943549559" target="_blank" class="flex items-center gap-2 px-5 py-2.5 bg-[#25D366] text-white rounded-full text-xs font-bold hover:bg-[#128C7E] transition-all transform hover:scale-105 shadow-md active:scale-95 no-underline">
-                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 .002 5.385.002 12.033c0 2.126.554 4.195 1.606 6.012L.004 24l6.096-1.597c1.765 1.01 3.754 1.542 5.931 1.542 6.646 0 12.03-5.386 12.03-12.033C24 5.385 18.615 0 12.031 0zm.001 21.996c-1.802 0-3.567-.484-5.111-1.401l-.367-.217-3.799.996.996-3.798-.238-.378C2.545 15.544 2.016 13.823 2.016 12.033 2.016 6.51 6.508 2.017 12.031 2.017c5.525 0 10.016 4.492 10.016 10.016 0 5.524-4.491 10.016-10.016 10.016zm5.501-7.518c-.302-.151-1.787-.882-2.063-.984-.275-.101-.475-.151-.676.151-.202.302-.782.984-.959 1.185-.176.202-.353.227-.655.076-1.784-.897-3.23-2.193-4.11-4.041-.11-.23.11-.219.4-.805.097-.196.048-.368-.026-.519-.076-.151-.676-1.63-.927-2.233-.243-.585-.49-.505-.676-.514-.176-.01-.377-.01-.578-.01-.202 0-.528.075-.805.378-.276.302-1.055 1.031-1.055 2.516s1.08 2.917 1.23 3.118c.151.202 2.127 3.245 5.152 4.549.718.309 1.278.494 1.716.632.721.229 1.378.197 1.896.119.58-.088 1.787-.73 2.038-1.436.252-.705.252-1.309.176-1.436-.075-.126-.275-.202-.577-.353z"/></svg>
-                    Any Problem? Message on WhatsApp
-                </a>
             </div>
         </div>`;
 }
