@@ -100,7 +100,7 @@
             return true;
         };
     </script>
-    <script src="script.js?v=203"></script>
+    <script src="script.js?v=204"></script>
 
     <script>
         const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
@@ -131,7 +131,7 @@
 
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').then(reg => {
+                navigator.serviceWorker.register('sw.js?v=204').then(reg => {
                     console.log('SW Registered:', reg);
                     
                     reg.addEventListener('updatefound', () => {
