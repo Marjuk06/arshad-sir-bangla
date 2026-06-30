@@ -289,6 +289,11 @@ async function initScrollableReader(url, title) {
         const loader = document.getElementById('pdf-loader');
         
         for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+            const loadingText = document.getElementById('pdf-loading-text');
+            if (loadingText) {
+                loadingText.textContent = `Processing page ${pageNum} of ${pdf.numPages}...`;
+            }
+
             const page = await pdf.getPage(pageNum);
             // Render at high quality (2.0) so zooming doesn't blur
             const scale = 2.0; 
