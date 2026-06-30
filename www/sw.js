@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bangla-batch-v1768154642'; // Critical update - force complete cache refresh for PDF fix
+const CACHE_NAME = 'bangla-batch-v200'; // Critical update - force complete cache refresh for PDF fix
 const urlsToCache = [
     '/',
     '/index.html',
