@@ -289,37 +289,88 @@ async function initScrollableReader(url, title) {
         const container = document.getElementById('pdf-scroll-container');
         const loader = document.getElementById('pdf-loader');
         
-        for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-            const loadingText = document.getElementById('pdf-loading-text');
-            if (loadingText) {
-                loadingText.textContent = `Processing page ${pageNum} of ${pdf.numPages}...`;
-            }
-
-            const page = await pdf.getPage(pageNum);
-            // Render at high quality (2.0) so zooming doesn't blur
-            const scale = 2.0; 
-            const viewport = page.getViewport({ scale: scale });
-
-            const canvas = document.createElement('canvas');
-            canvas.className = 'pdf-page-canvas';
-            const context = canvas.getContext('2d');
-            
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-            
-            // Start at 100% width
-            canvas.style.width = '100%';
-            canvas.style.height = 'auto';
-
-            container.appendChild(canvas);
-
-            await page.render({
-                canvasContext: context,
-                viewport: viewport
-            }).promise;
-        }
+        // 1. Fetch Page 1 to determine aspect ratio for placeholders
+        const firstPage = await pdf.getPage(1);
+        const scale = 1.5; // Reduced from 2.0 to 1.5 for lightweight memory usage
+        const viewport = firstPage.getViewport({ scale: scale });
+        const aspectRatio = viewport.width / viewport.height;
         
+        // Hide loader immediately so user can start scrolling
         loader.classList.add('hidden');
+
+        // 2. Create placeholders for all pages
+        const pagePlaceholders = [];
+        for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+            const placeholder = document.createElement('div');
+            placeholder.className = 'pdf-page-placeholder w-full mb-2 bg-gray-200 dark:bg-gray-800 flex items-center justify-center';
+            placeholder.style.aspectRatio = aspectRatio.toString();
+            placeholder.dataset.pageNum = pageNum;
+            placeholder.dataset.rendered = "false";
+            
+            // Add a small loading spinner in the center of each placeholder
+            placeholder.innerHTML = `<div class="w-6 h-6 border-2 border-green-500 border-t-transparent rounded-full animate-spin opacity-50"></div>`;
+            
+            container.appendChild(placeholder);
+            pagePlaceholders.push(placeholder);
+        }
+
+        // 3. Setup IntersectionObserver for Lazy Loading
+        const observerOptions = {
+            root: container,
+            rootMargin: '150% 0px 150% 0px', // Load 1.5 viewports above and below
+            threshold: 0
+        };
+
+        const renderPage = async (placeholder) => {
+            const pageNum = parseInt(placeholder.dataset.pageNum);
+            if (placeholder.dataset.rendered === "true" || placeholder.dataset.rendered === "rendering") return;
+            
+            // Mark as rendering to prevent duplicate fetches
+            placeholder.dataset.rendered = "rendering";
+
+            try {
+                const page = await pdf.getPage(pageNum);
+                const pageViewport = page.getViewport({ scale: scale });
+                
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.height = pageViewport.height;
+                canvas.width = pageViewport.width;
+                
+                // Render the page
+                await page.render({
+                    canvasContext: context,
+                    viewport: pageViewport
+                }).promise;
+                
+                // Clear placeholder and adapt to canvas size
+                placeholder.innerHTML = '';
+                placeholder.style.aspectRatio = 'auto';
+                placeholder.classList.remove('bg-gray-200', 'dark:bg-gray-800', 'flex', 'items-center', 'justify-center');
+                
+                canvas.style.width = '100%';
+                canvas.style.height = 'auto';
+                canvas.className = 'pdf-page-canvas shadow-md';
+                placeholder.appendChild(canvas);
+                
+                placeholder.dataset.rendered = "true";
+            } catch (err) {
+                console.error("Failed to render page " + pageNum, err);
+                placeholder.dataset.rendered = "false"; // allow retry if failed
+                placeholder.innerHTML = `<span class="text-xs text-red-500">Failed to load page</span>`;
+            }
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    renderPage(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all placeholders
+        pagePlaceholders.forEach(p => observer.observe(p));
 
     } catch (error) {
         console.error(error);
